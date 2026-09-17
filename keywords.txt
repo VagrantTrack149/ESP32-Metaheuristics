@@ -1,0 +1,39 @@
+#######################################
+# Syntax Coloring Map ESP32-Metaheuristics
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Bounds	KEYWORD1
+Agente	KEYWORD1
+Particula	KEYWORD1
+RNG	KEYWORD1
+Optimizer	KEYWORD1
+GeneticAlgorithm	KEYWORD1
+DifferentialEvolution	KEYWORD1
+ParticleSwarm	KEYWORD1
+ArtificialBeeColony	KEYWORD1
+GreyWolfOptimizer	KEYWORD1
+WhaleOptimization	KEYWORD1
+ObjectiveFunction	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+iniciar	KEYWORD2
+paso	KEYWORD2
+ejecutar	KEYWORD2
+mejor	KEYWORD2
+uniforme	KEYWORD2
+uniform	KEYWORD2
+uniformInt	KEYWORD2
+gauss	KEYWORD2
+seed	KEYWORD2
+indiceDistinto	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
