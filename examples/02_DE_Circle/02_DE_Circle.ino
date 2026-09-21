@@ -26,6 +26,16 @@ float errorCirculo(const std::vector<float>& puntos) {
     return error / (PUNTOS * 3);
 }
 
+void imprimirCoordenadas(const std::vector<float>& puntos) {
+    Serial.println("\nCoordenadas del mejor individuo:");
+    for (int i = 0; i < PUNTOS; ++i) {
+        float x = puntos[i];
+        float y = puntos[PUNTOS + i];
+        float z = puntos[2 * PUNTOS + i];
+        Serial.printf("P%d -> x=%.4f | y=%.4f | z=%.4f\n", i + 1, x, y, z);
+    }
+}
+
 void setup() {
     Serial.begin(115200);
     while (!Serial) { delay(10); }
@@ -42,8 +52,8 @@ void setup() {
             Serial.printf("Iter %d/%d | Mejor fitness: %.6f\n", it + 1, total, mejor.fitness);
         }
     });
-
     Serial.printf("\nFitness final: %.6f\n", de.mejor().fitness);
+    imprimirCoordenadas(de.mejor().posicion);
 }
 
 void loop() {
