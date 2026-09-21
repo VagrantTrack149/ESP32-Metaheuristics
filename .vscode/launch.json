@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Documentos/ESP32-Metaheuristics",
-      "program": "d:/Documentos/ESP32-Metaheuristics/build/Debug/outDebug",
+      "cwd": "d:/Documentos/ESP32-Metaheuristics/src",
+      "program": "d:/Documentos/ESP32-Metaheuristics/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
