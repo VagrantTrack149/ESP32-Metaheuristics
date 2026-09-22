@@ -71,31 +71,46 @@ Ejemplo genérico (la sintaxis exacta puede variar según el algoritmo):
 
 ```cpp
 #include <ESP32-Metaheuristics.h>
+#include <math.h>
 
-// Función de fitness: minimizar (x-3)^2 + (y+2)^2
-float fitness(float* vars, int dim) {
-  return pow(vars[0] - 3.0, 2) + pow(vars[1] + 2.0, 2);
+using namespace bio;
+
+const int DIMENSIONES = 2;
+const int TAM_POBLACION = 30;
+const int GENERACIONES = 100;
+
+// Función de fitness: minimizar (x - 3)^2 + (y + 2)^2
+float fitnessFunc(const std::vector<float>& vars) {
+  float x = vars[0];
+  float y = vars[1];
+  return pow(x - 3.0f, 2) + pow(y + 2.0f, 2);
 }
-
-GeneticAlgorithm ga;
 
 void setup() {
   Serial.begin(115200);
+  delay(1000);
+  //Inicializar generador de números aleatorios
+  RNG::seed();
 
-  // Configuración
-  ga.setPopulationSize(30);
-  ga.setGenerations(100);
-  ga.setDimension(2);
-  ga.setBounds(-10.0, 10.0);   // límites inferior y superior
-  ga.setFitnessFunction(fitness);
+  //Configurar límites para las dimensiones
+  Bounds limites = Bounds::uniforme(DIMENSIONES, -10.0f, 10.0f);
 
-  // Ejecutar optimización
-  ga.run();
+  //Instanciar el Algoritmo Genético
+  GeneticAlgorithm ga(limites, fitnessFunc, TAM_POBLACION);
 
-  // Obtener mejor solución
-  float* best = ga.getBestSolution();
-  Serial.printf("Mejor solución: x=%.3f, y=%.3f, fitness=%.4f\n",
-                best[0], best[1], ga.getBestFitness());
+  Serial.println("Ejecutando optimización con GA...");
+
+  //Ejecutar con callback opcional para monitorear progreso
+  ga.ejecutar(GENERACIONES, [](int it, int total, const Agente& mejor) {
+    if ((it + 1) % 20 == 0 || it == 0) {
+      Serial.printf("Iter %d/%d | Mejor fitness: %.6f\n", it + 1, total, mejor.fitness);
+    }
+  });
+
+  //Obtener resultados finales
+  Serial.println("\nResultado final:");
+  Serial.printf("Mejor solución -> x: %.3f, y: %.3f\n", ga.mejor().posicion[0], ga.mejor().posicion[1]);
+  Serial.printf("Fitness óptimo: %.4f\n", ga.mejor().fitness);
 }
 
 void loop() {
