@@ -12,7 +12,7 @@ Incluye implementaciones ligeras de varios algoritmos clásicos, pensadas para e
 
 ---
 
-## 📋 Tabla de contenidos
+## Tabla de contenidos
 
 - [Algoritmos soportados](#-algoritmos-soportados)
 - [Instalación](#-instalación)
@@ -57,7 +57,7 @@ Cada algoritmo está implementado en C++ con un enfoque en bajo consumo de memor
 
 ---
 
-## 🚀 Uso básico
+## Uso básico
 
 El flujo típico es:
 
